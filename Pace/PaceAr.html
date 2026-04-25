@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<link rel="icon" type="image/x-icon" href="https://fiberahmed.com/Pace/favicon.ico">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Pace Arabic — الآركات والأسئلة الشائعة</title>
+<style>
+  @font-face {
+    font-family: 'Thamanyah Serif Text';
+    src: url('https://fiberahmed.com/assets/thmanyahseriftext-Medium.woff2') format('woff2');
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Thamanyah Serif Text', sans-serif;
+    background: #0f1117;
+    color: #e0ddd6;
+    min-height: 100vh;
+    padding: 32px 20px 60px;
+    max-width: 780px;
+    margin: 0 auto;
+  }
+
+  /* ── Top bar ── */
+  .topbar {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .site-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    background: rgba(232,201,122,0.08);
+    border: 1px solid rgba(232,201,122,0.25);
+    border-radius: 8px;
+    padding: 7px 14px;
+    color: #e8c97a;
+    font-size: 13.5px;
+    transition: background 0.2s;
+  }
+  .site-link:hover { background: rgba(232,201,122,0.15); }
+  .site-link svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  /* ── Section title ── */
+  .section-title {
+    font-size: 17px;
+    color: #e8c97a;
+    border-bottom: 1px solid #2a2d3a;
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+  }
+
+  /* ── Links block ── */
+  .links-block {
+    background: #161920;
+    border: 1px solid #252836;
+    border-radius: 12px;
+    padding: 22px 24px;
+    margin-bottom: 40px;
+    font-size: 14.5px;
+  }
+
+  .saga-title {
+    color: #e8c97a;
+    font-size: 15px;
+    margin-top: 22px;
+    margin-bottom: 10px;
+  }
+  .saga-title:first-child { margin-top: 0; }
+
+  /* ── Arc row ── */
+  .arc-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 12px;
+  }
+  .arc-row:last-of-type { margin-bottom: 0; }
+
+  .arc-name {
+    color: #c8c5bd;
+    font-size: 13.5px;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .arc-name sup { color: #c8c5bd; }
+
+  .num-dim {
+    font-size: 12px;
+    color: #555;
+    flex-shrink: 0;
+  }
+
+  /* quality badges */
+  .arc-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 5px;
+  }
+
+  .badge {
+    display: inline-block;
+    text-decoration: none;
+    background: rgba(232,201,122,0.08);
+    border: 1px solid rgba(232,201,122,0.22);
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12px;
+    color: #c9a94e;
+    transition: background 0.18s, color 0.18s, border-color 0.18s;
+    line-height: 1.6;
+  }
+  .badge:hover {
+    background: rgba(232,201,122,0.18);
+    border-color: rgba(232,201,122,0.5);
+    color: #e8c97a;
+  }
+
+  .badge-na {
+    background: none;
+    border: 1px solid #252836;
+    border-radius: 20px;
+    padding: 3px 12px;
+    font-size: 12px;
+    color: #444;
+    line-height: 1.6;
+    display: inline-block;
+  }
+
+  .arc-name sup a.partial-note,
+  a.partial-note {
+    font-size: 75%;
+    color: #c8c5bd;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .arc-name sup a.partial-note:hover,
+  a.partial-note:hover { color: #e8c97a; }
+
+  /* ── Notes ── */
+  .note {
+    margin-top: 20px;
+    padding-top: 14px;
+    border-top: 1px solid #2a2d3a;
+    color: #888;
+    font-size: 13px;
+    line-height: 2;
+  }
+  .note a {
+    color: #c9a94e;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(201,169,78,0.35);
+    word-break: break-all;
+  }
+  .note a:hover { color: #e8c97a; }
+
+  /* ── FAQ ── */
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .faq-item {
+    background: #161920;
+    border: 1px solid #252836;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 15px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    text-align: right;
+    font-family: 'Thamanyah Serif Text', sans-serif;
+    font-size: 14px;
+    color: #e0ddd6;
+  }
+  .faq-q:hover { background: rgba(255,255,255,0.02); }
+
+  .faq-arrow {
+    color: #e8c97a;
+    font-size: 20px;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+    line-height: 1;
+  }
+  .faq-item.open .faq-arrow { transform: rotate(90deg); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+  }
+  .faq-item.open .faq-a { max-height: 500px; }
+
+  .faq-a-inner {
+    padding: 12px 18px 16px;
+    font-size: 13.5px;
+    color: #9a9898;
+    line-height: 1.85;
+    border-top: 1px solid #252836;
+  }
+  .faq-a-inner a {
+    color: #c9a94e;
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(201,169,78,0.35);
+    word-break: break-all;
+  }
+  .faq-a-inner a:hover { color: #e8c97a; }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a class="site-link" href="https://onepace.net/ar" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" fill="none" stroke="#e8c97a" stroke-width="1.6" stroke-linecap="round">
+      <circle cx="12" cy="12" r="9"/>
+      <line x1="2" y1="12" x2="22" y2="12"/>
+      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </svg>
+    موقع One Pace الرسمي
+  </a>
+  <a class="site-link" href="https://discord.gg/pacing" target="_blank" rel="noopener">
+    <svg viewBox="0 0 127.14 96.36" fill="#e8c97a" xmlns="http://www.w3.org/2000/svg" width="20" height="20" style="flex-shrink:0">
+      <path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z"/>
+    </svg>
+    سيرفر Discord الرسمي
+  </a>
+</div>
+
+<div class="section-title">آركات One Pace بالعربية</div>
+
+<div class="links-block">
+
+  <div class="saga-title">ساغا الأزرق الشرقي</div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">01</span><span>فجر المغامرة</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/en3f5Ybv" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/yXSN4Shv" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/kXcgSyL9" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">02</span><span>بلدة البرتقال</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/NQuGQxer" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/wZBbxZNA" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/CqcaMrUn" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">03</span><span>قرية الشراب</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/Rvzdi1d9" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/H1ireEsE" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/GnusQMDy" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">04</span><span>غايمون</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/9Amz2haz" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/zzHDFdH9" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/WNbMbK4L" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">05</span><span>باراتي</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/s7KTfa5p" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/MZoo9qti" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/TRHvUfa2" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">06</span><span>أرلونغ بارك<sup><a class="partial-note" href="#partial-note">1</a></sup></span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/HfgZgrMA" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/zpFMK4Wv" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/JQvfA2Td" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">07</span><span>مغامرات طاقم باغي</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/UVCadKgP" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/XHARBTGD" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/53rwZPmJ" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">08</span><span>لوغتاون</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="saga-title">ساغا أرباستا</div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">09</span><span>الجبل المعكوس</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/SJE3QdaR" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/Xhm5nrum" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/HTUndZGk" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">10</span><span>ويسكي بيك</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">11</span><span>يوميات كفاح كوبي وهيليميبّو</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/nhCuVSXE" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/QNxYR1hu" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/irkPa1v9" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">12</span><span>ليتل غاردن</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/jb6e1Bkc" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/cz4q88xu" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/DmTmugi5" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">13</span><span>جزيرة الطبل</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">14</span><span>أرباستا</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="saga-title">ساغا جزيرة السماء</div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">15</span><span>جايا</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/ytc6ZtEq" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/MQGDS9uh" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/D6JPXAzk" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">16</span><span>سكايبيا<sup><a class="partial-note" href="#partial-note">1</a></sup></span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://t.me/onepaceskypia" target="_blank">1080p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">17</span><span>لونغ رينغ لونغ لاند</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="saga-title">ساغا ووتر سيفن</div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">18</span><span>ووتر سيفن</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/hKNW5wA6" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/HNDjqshH" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/ic3wJXT8" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">19</span><span>إنيس لوبي<sup><a class="partial-note" href="#partial-note">1</a></sup></span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/WkMTSU5q" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/j1CDeYrY" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/rTqjwc6B" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">20</span><span>ما بعد إنيس لوبي</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="saga-title">ساغا ثريلر بارك</div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">21</span><span>ثريلر بارك</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="saga-title">ساغا حرب القمة</div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">22</span><span>أرخبيل شابوندي</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">23</span><span>أمازون ليلي</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">24</span><span>إمبل داون</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">25</span><span>مغامرات طاقم قبعة القش</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/XQehUdWA" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/2qGBxajS" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/HD9eJTzJ" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">26</span><span>مارينفورد</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">27</span><span>ما بعد الحرب</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/pphPPFfK" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/SXAkScqc" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/BcnXGzdq" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="saga-title">ساغا جزيرة البرمائيين</div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">28</span><span>العودة إلى شابوندي</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://t.me/OnePace_ReturnToSabaody_AR" target="_blank">1080p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">29</span><span>جزيرة البرمائيين</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="saga-title">ساغا دريسروزا</div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">30</span><span>بانك هازارد</span></div>
+    <div class="arc-badges"><span class="badge-na">غير متوفر حاليًّا</span></div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">31</span><span>دريسروزا</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/u5JykYNu" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/rsY5vE83" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="saga-title">ساغا جزيرة الكعكة الكاملة</div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">32</span><span>زو</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/mLqLVxLj" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/zMjm7nNq" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">33</span><span>جزيرة الكعكة الكاملة</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/9xypi9MJ" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/Jqi4KPLB" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">34</span><span>مؤتمر ليفيلي</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://t.me/OnePace_Levely_AR" target="_blank">720p</a>
+    </div>
+  </div>
+
+  <div class="saga-title">ساغا بلاد وانو</div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">35</span><span>بلاد وانو<sup><a class="partial-note" href="#partial-note">1</a></sup></span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://pixeldrain.net/l/vPpipQnu" target="_blank">1080p</a>
+      <a class="badge" href="https://pixeldrain.net/l/YUHGVXhq" target="_blank">720p</a>
+      <a class="badge" href="https://pixeldrain.net/l/tuASssSy" target="_blank">480p</a>
+    </div>
+  </div>
+
+  <div class="saga-title">الساغا الختامية</div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">36</span><span>إيغهيد</span></div>
+    <div class="arc-badges">
+      <a class="badge" href="https://t.me/OnePace_Egghead_AR" target="_blank">1080p</a>
+    </div>
+  </div>
+
+  <div class="arc-row">
+    <div class="arc-name"><span class="num-dim">37</span><span>إلباف</span></div>
+    <div class="arc-badges"><span class="badge-na">لم يصدر بعد</span></div>
+  </div>
+
+  <div class="note" id="partial-note">
+    ¹: متوفر جزئيًّا<br>
+    ملفات الترجمة: <a href="https://github.com/one-pace/one-pace-public-subtitles" target="_blank">ريبو Github الرسمي</a><br>
+    الحلقات والفصول المُقتبسة: <a href="https://docs.google.com/spreadsheets/d/1HQRMJgu_zArp-sLnvFMDzOyjdsht87eFLECxMK858lA" target="_blank">ملف Sheet الرسمي</a><br>
+    مشاهدة الآركات غير المتوفرة عربيًّا: <a href="https://onepace.net" target="_blank">onepace.net</a>
+  </div>
+
+</div>
+
+<div class="section-title">الأسئلة الشائعة</div>
+
+<div class="faq-list">
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      <span>متى تنزلوا الآرك الفلاني؟</span>
+      <span class="faq-arrow">›</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">ما في أي موعد إصدار محدد لأي آرك.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      <span>ليش سحبتوا على وانو؟</span>
+      <span class="faq-arrow">›</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">ما سحبنا عليه، وللعلم أن الآرك لم يكتمل حتى بالإنجليزية.</div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      <span>وين أحصل طرق اقتباس الآركات؟</span>
+      <span class="faq-arrow">›</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">
+      في <a href="https://docs.google.com/spreadsheets/d/1HQRMJgu_zArp-sLnvFMDzOyjdsht87eFLECxMK858lA" target="_blank">ملف Sheet الرسمي للمشروع</a>.
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      <span>بما إن فيه عدة آركات غير مترجمة فهل لديكم دليل مشاهدة يسهّل علي الأمر؟</span>
+      <span class="faq-arrow">›</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">
+      نعم؛ <a href="https://fiberahmed.com/PaceArGuide" target="_blank">ها هنا</a>، و<a href="https://docs.google.com/spreadsheets/d/1HQRMJgu_zArp-sLnvFMDzOyjdsht87eFLECxMK858lA" target="_blank">ملف Sheet الرسمي</a> يفي بالغرض كذلك.
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      <span>وين أحصل الترجمة/الدبلجة الإنجليزية بأعلى دقة؟</span>
+      <span class="faq-arrow">›</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">
+      من موقع <a href="https://nyaa.si/?f=0&c=0_0&q=One+Pace" target="_blank">Nyaa</a>، لكن يُرجى الانتباه لقوانين الدولة فالتنزيل من التورنت قد يؤدي إلى عقوبات من مقدم الخدمة، لكن مثلًا السعودية ما فيها عقوبات.
+    </div></div>
+  </div>
+
+  <div class="faq-item">
+    <button class="faq-q" onclick="toggle(this)">
+      <span>وين أحصل ملفات الترجمة العربية للسوفت سب؟</span>
+      <span class="faq-arrow">›</span>
+    </button>
+    <div class="faq-a"><div class="faq-a-inner">
+      في <a href="https://github.com/one-pace/one-pace-public-subtitles" target="_blank">ريبو Github الرسمي</a>.
+    </div></div>
+  </div>
+
+</div>
+
+<script>
+  function toggle(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+</script>
+</body>
+</html>
