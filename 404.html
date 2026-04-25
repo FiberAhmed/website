@@ -2,7 +2,17 @@
 <html>
 <head>
 <script>
-  if (location.pathname.startsWith('/Pace')) {
+  var path = location.pathname;
+  var map = {
+    '/pace': '/Pace',
+    '/pace/pacear': '/Pace/PaceAr',
+    '/pace/pacearguide': '/Pace/PaceArGuide',
+    '/pace/pacedubguide': '/Pace/PaceDubGuide',
+  };
+  var lower = path.toLowerCase();
+  if (map[lower]) {
+    location.replace(map[lower]);
+  } else if (lower.startsWith('/pace')) {
     location.replace('/Pace/PaceAr');
   }
 </script>
